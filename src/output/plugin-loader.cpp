@@ -161,9 +161,11 @@ void plugin_manager::reload_dynamic_plugins()
             continue;
 
         auto ptr = load_plugin_from_file(path + "lib" + plugin + ".so");
-        init_plugin(ptr);
         if (ptr)
+        {
+            init_plugin(ptr);
             loaded_plugins[plugin] = std::move(ptr);
+        }
     }
 }
 
