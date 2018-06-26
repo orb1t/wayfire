@@ -61,6 +61,9 @@ plugin_manager::~plugin_manager()
 
     loaded_plugins.clear();
     wl_event_source_remove(idle_reload_dynamic_plugins);
+
+    plugins_opt->updated.erase(std::remove(plugins_opt->updated.begin(), plugins_opt->updated.end(),
+                                           &list_updated), plugins_opt->updated.end());
 }
 
 void plugin_manager::init_plugin(wayfire_plugin& p)
